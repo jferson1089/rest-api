@@ -9,14 +9,10 @@ class SystemListView(generics.ListCreateAPIView):
     queryset = System.objects.all()
     serializer_class = SystemSerializer
 
-
-
-
-class SystemCreateView(generics.CreateAPIView):
-
-    def create(self, serializer):
-        serializer_class = SystemSerializer
+    def perform_create(self, serializer):
         serializer.save()
+#
+# class SystemCreateView(generics.CreateAPIView):
 
 
 class SystemUpdateView(generics.RetrieveUpdateDestroyAPIView):
@@ -24,18 +20,18 @@ class SystemUpdateView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SystemSerializer
 
 
-class GamesListView(generics.ListAPIView):
+class GamesListView(generics.ListCreateAPIView):
     queryset = Games.objects.all()
     serializer_class = GameSerializer
 
-
-
-
-class GamesCreateView(generics.CreateAPIView):
-
-    def create(self, serializer):
-        serializer_class= GameSerializer
+    def perform_create(self, serializer):
         serializer.save()
+
+
+
+
+
+# class GamesCreateView(generics.CreateAPIView):
 
 
 class GamesUpdateView(generics.RetrieveUpdateDestroyAPIView):
