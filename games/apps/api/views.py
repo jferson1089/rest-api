@@ -5,14 +5,17 @@ from rest_framework import generics
 
 
 # Create your views here.
-class SystemListView(generics.ListAPIView):
+class SystemListView(generics.ListCreateAPIView):
     queryset = System.objects.all()
     serializer_class = SystemSerializer
+
+
 
 
 class SystemCreateView(generics.CreateAPIView):
 
     def create(self, serializer):
+        serializer_class = SystemSerializer
         serializer.save()
 
 
@@ -26,10 +29,14 @@ class GamesListView(generics.ListAPIView):
     serializer_class = GameSerializer
 
 
+
+
 class GamesCreateView(generics.CreateAPIView):
 
     def create(self, serializer):
+        serializer_class= GameSerializer
         serializer.save()
+
 
 class GamesUpdateView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Games.objects.all()
